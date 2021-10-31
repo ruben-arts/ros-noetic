@@ -1,0 +1,1103 @@
+pool:
+  name: Default
+  demands:
+  - Agent.OS -equals linux
+  - Agent.OSArchitecture -equals ARM64
+trigger:
+- buildbranch_linux_aarch64
+pr: none
+stages:
+- stage: stage_0
+  jobs:
+  - job: ros_noetic_std_msgs_ros_noetic_rosbuild_ros_noetic_std_srvs_ros_noetic_smach_ros_noetic_gazebo_dev
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-std-msgs ros-noetic-rosbuild ros-noetic-std-srvs
+          ros-noetic-smach ros-noetic-gazebo-dev
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-std-msgs ros-noetic-rosbuild ros-noetic-std-srvs
+        ros-noetic-smach ros-noetic-gazebo-dev
+  - job: ros_noetic_gl_dependency_ros_noetic_webkit_dependency_ros_noetic_grid_map_core_ros_noetic_rosserial_msgs_ros_noetic_plotjuggler
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-gl-dependency ros-noetic-webkit-dependency ros-noetic-grid-map-core
+          ros-noetic-rosserial-msgs ros-noetic-plotjuggler
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-gl-dependency ros-noetic-webkit-dependency ros-noetic-grid-map-core
+        ros-noetic-rosserial-msgs ros-noetic-plotjuggler
+- stage: stage_1
+  jobs:
+  - job: ros_noetic_rosgraph_msgs_ros_noetic_rosconsole_ros_noetic_geometry_msgs_ros_noetic_actionlib_msgs_ros_noetic_diagnostic_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rosgraph-msgs ros-noetic-rosconsole ros-noetic-geometry-msgs
+          ros-noetic-actionlib-msgs ros-noetic-diagnostic-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rosgraph-msgs ros-noetic-rosconsole ros-noetic-geometry-msgs
+        ros-noetic-actionlib-msgs ros-noetic-diagnostic-msgs
+  - job: ros_noetic_python_qt_binding_ros_noetic_bond_ros_noetic_mk_ros_noetic_smach_msgs_ros_noetic_uuid_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-python-qt-binding ros-noetic-bond ros-noetic-mk
+          ros-noetic-smach-msgs ros-noetic-uuid-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-python-qt-binding ros-noetic-bond ros-noetic-mk
+        ros-noetic-smach-msgs ros-noetic-uuid-msgs
+  - job: ros_noetic_turtlebot3_msgs_ros_noetic_velodyne_msgs_ros_noetic_grid_map_octomap_ros_noetic_nmea_msgs_ros_noetic_rosbridge_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-turtlebot3-msgs ros-noetic-velodyne-msgs ros-noetic-grid-map-octomap
+          ros-noetic-nmea-msgs ros-noetic-rosbridge-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-turtlebot3-msgs ros-noetic-velodyne-msgs ros-noetic-grid-map-octomap
+        ros-noetic-nmea-msgs ros-noetic-rosbridge-msgs
+  - job: ros_noetic_plotjuggler_msgs_ros_noetic_jackal_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-plotjuggler-msgs ros-noetic-jackal-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-plotjuggler-msgs ros-noetic-jackal-msgs
+- stage: stage_2
+  jobs:
+  - job: ros_noetic_roscpp_ros_noetic_pluginlib_ros_noetic_tf2_msgs_ros_noetic_rosconsole_bridge_ros_noetic_shape_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-roscpp ros-noetic-pluginlib ros-noetic-tf2-msgs
+          ros-noetic-rosconsole-bridge ros-noetic-shape-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-roscpp ros-noetic-pluginlib ros-noetic-tf2-msgs
+        ros-noetic-rosconsole-bridge ros-noetic-shape-msgs
+  - job: ros_noetic_trajectory_msgs_ros_noetic_octomap_msgs_ros_noetic_visualization_msgs_ros_noetic_resource_retriever_ros_noetic_qt_gui
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-trajectory-msgs ros-noetic-octomap-msgs ros-noetic-visualization-msgs
+          ros-noetic-resource-retriever ros-noetic-qt-gui
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-trajectory-msgs ros-noetic-octomap-msgs ros-noetic-visualization-msgs
+        ros-noetic-resource-retriever ros-noetic-qt-gui
+  - job: ros_noetic_nav_msgs_ros_noetic_roslisp_ros_noetic_ros_ros_noetic_qt_dotgraph_ros_noetic_qt_gui_py_common
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-nav-msgs ros-noetic-roslisp ros-noetic-ros ros-noetic-qt-dotgraph
+          ros-noetic-qt-gui-py-common
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-nav-msgs ros-noetic-roslisp ros-noetic-ros ros-noetic-qt-dotgraph
+        ros-noetic-qt-gui-py-common
+  - job: ros_noetic_kdl_conversions_ros_noetic_eigen_conversions_ros_noetic_geographic_msgs_ros_noetic_move_base_msgs_ros_noetic_graph_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-kdl-conversions ros-noetic-eigen-conversions ros-noetic-geographic-msgs
+          ros-noetic-move-base-msgs ros-noetic-graph-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-kdl-conversions ros-noetic-eigen-conversions ros-noetic-geographic-msgs
+        ros-noetic-move-base-msgs ros-noetic-graph-msgs
+  - job: ros_noetic_mbf_abstract_core_ros_noetic_slam_toolbox_msgs_ros_noetic_franka_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-mbf-abstract-core ros-noetic-slam-toolbox-msgs
+          ros-noetic-franka-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-mbf-abstract-core ros-noetic-slam-toolbox-msgs
+        ros-noetic-franka-msgs
+- stage: stage_3
+  jobs:
+  - job: ros_noetic_rosout_ros_noetic_rospy_ros_noetic_tf2_ros_noetic_geometric_shapes_ros_noetic_bondcpp
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rosout ros-noetic-rospy ros-noetic-tf2 ros-noetic-geometric-shapes
+          ros-noetic-bondcpp
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rosout ros-noetic-rospy ros-noetic-tf2 ros-noetic-geometric-shapes
+        ros-noetic-bondcpp
+  - job: ros_noetic_voxel_grid_ros_noetic_qt_gui_cpp_ros_noetic_hardware_interface_ros_noetic_roscpp_tutorials_ros_noetic_control_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-voxel-grid ros-noetic-qt-gui-cpp ros-noetic-hardware-interface
+          ros-noetic-roscpp-tutorials ros-noetic-control-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-voxel-grid ros-noetic-qt-gui-cpp ros-noetic-hardware-interface
+        ros-noetic-roscpp-tutorials ros-noetic-control-msgs
+  - job: ros_noetic_turtlesim_ros_noetic_grid_map_msgs_ros_noetic_visualization_marker_tutorials_ros_noetic_pluginlib_tutorials_ros_noetic_sparse_bundle_adjustment
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-turtlesim ros-noetic-grid-map-msgs ros-noetic-visualization-marker-tutorials
+          ros-noetic-pluginlib-tutorials ros-noetic-sparse-bundle-adjustment
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-turtlesim ros-noetic-grid-map-msgs ros-noetic-visualization-marker-tutorials
+        ros-noetic-pluginlib-tutorials ros-noetic-sparse-bundle-adjustment
+  - job: ros_noetic_mbf_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-mbf-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-mbf-msgs
+- stage: stage_4
+  jobs:
+  - job: ros_noetic_roslaunch_ros_noetic_tf2_py_ros_noetic_urdfdom_py_ros_noetic_tf2_eigen_ros_noetic_rqt_gui
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-roslaunch ros-noetic-tf2-py ros-noetic-urdfdom-py
+          ros-noetic-tf2-eigen ros-noetic-rqt-gui
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-roslaunch ros-noetic-tf2-py ros-noetic-urdfdom-py
+        ros-noetic-tf2-eigen ros-noetic-rqt-gui
+  - job: ros_noetic_nodelet_ros_noetic_bondpy_ros_noetic_controller_interface_ros_noetic_transmission_interface_ros_noetic_turtlebot3_teleop
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-nodelet ros-noetic-bondpy ros-noetic-controller-interface
+          ros-noetic-transmission-interface ros-noetic-turtlebot3-teleop
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-nodelet ros-noetic-bondpy ros-noetic-controller-interface
+        ros-noetic-transmission-interface ros-noetic-turtlebot3-teleop
+  - job: ros_noetic_rosserial_python_ros_noetic_combined_robot_hw_ros_noetic_rospy_message_converter
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rosserial-python ros-noetic-combined-robot-hw
+          ros-noetic-rospy-message-converter
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rosserial-python ros-noetic-combined-robot-hw
+        ros-noetic-rospy-message-converter
+- stage: stage_5
+  jobs:
+  - job: ros_noetic_rostest_ros_noetic_rqt_gui_py_ros_noetic_rqt_gui_cpp_ros_noetic_bond_core_ros_noetic_nodelet_tutorial_math
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rostest ros-noetic-rqt-gui-py ros-noetic-rqt-gui-cpp
+          ros-noetic-bond-core ros-noetic-nodelet-tutorial-math
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rostest ros-noetic-rqt-gui-py ros-noetic-rqt-gui-cpp
+        ros-noetic-bond-core ros-noetic-nodelet-tutorial-math
+- stage: stage_6
+  jobs:
+  - job: ros_noetic_topic_tools_ros_noetic_rosbag_storage_ros_noetic_message_filters_ros_noetic_urdf_ros_noetic_xacro
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-topic-tools ros-noetic-rosbag-storage ros-noetic-message-filters
+          ros-noetic-urdf ros-noetic-xacro
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-topic-tools ros-noetic-rosbag-storage ros-noetic-message-filters
+        ros-noetic-urdf ros-noetic-xacro
+  - job: ros_noetic_map_server_ros_noetic_diagnostic_updater_ros_noetic_filters_ros_noetic_diagnostic_aggregator_ros_noetic_rqt_runtime_monitor
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-map-server ros-noetic-diagnostic-updater ros-noetic-filters
+          ros-noetic-diagnostic-aggregator ros-noetic-rqt-runtime-monitor
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-map-server ros-noetic-diagnostic-updater ros-noetic-filters
+        ros-noetic-diagnostic-aggregator ros-noetic-rqt-runtime-monitor
+  - job: ros_noetic_rqt_web_ros_noetic_rqt_top_ros_noetic_rqt_shell_ros_noetic_rqt_py_console_ros_noetic_rospy_tutorials
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rqt-web ros-noetic-rqt-top ros-noetic-rqt-shell
+          ros-noetic-rqt-py-console ros-noetic-rospy-tutorials
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rqt-web ros-noetic-rqt-top ros-noetic-rqt-shell
+        ros-noetic-rqt-py-console ros-noetic-rospy-tutorials
+  - job: ros_noetic_rosauth_ros_noetic_nmea_comms_ros_noetic_kdl_parser_py
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rosauth ros-noetic-nmea-comms ros-noetic-kdl-parser-py
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rosauth ros-noetic-nmea-comms ros-noetic-kdl-parser-py
+- stage: stage_7
+  jobs:
+  - job: ros_noetic_rosbag_ros_noetic_kdl_parser_ros_noetic_srdfdom_ros_noetic_self_test_ros_noetic_joint_limits_interface
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rosbag ros-noetic-kdl-parser ros-noetic-srdfdom
+          ros-noetic-self-test ros-noetic-joint-limits-interface
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rosbag ros-noetic-kdl-parser ros-noetic-srdfdom
+        ros-noetic-self-test ros-noetic-joint-limits-interface
+  - job: ros_noetic_turtlebot3_description_ros_noetic_ros_tutorials_ros_noetic_velodyne_description_ros_noetic_rosserial_server_ros_noetic_robot_upstart
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-turtlebot3-description ros-noetic-ros-tutorials
+          ros-noetic-velodyne-description ros-noetic-rosserial-server ros-noetic-robot-upstart
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-turtlebot3-description ros-noetic-ros-tutorials
+        ros-noetic-velodyne-description ros-noetic-rosserial-server ros-noetic-robot-upstart
+- stage: stage_8
+  jobs:
+  - job: ros_noetic_rostopic_ros_noetic_rosmsg_ros_noetic_sensor_msgs_ros_noetic_diagnostic_analysis
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rostopic ros-noetic-rosmsg ros-noetic-sensor-msgs
+          ros-noetic-diagnostic-analysis
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rostopic ros-noetic-rosmsg ros-noetic-sensor-msgs
+        ros-noetic-diagnostic-analysis
+- stage: stage_9
+  jobs:
+  - job: ros_noetic_rosnode_ros_noetic_rosservice_ros_noetic_joint_state_publisher_ros_noetic_object_recognition_msgs_ros_noetic_map_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rosnode ros-noetic-rosservice ros-noetic-joint-state-publisher
+          ros-noetic-object-recognition-msgs ros-noetic-map-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rosnode ros-noetic-rosservice ros-noetic-joint-state-publisher
+        ros-noetic-object-recognition-msgs ros-noetic-map-msgs
+  - job: ros_noetic_stereo_msgs_ros_noetic_image_transport_ros_noetic_gazebo_msgs_ros_noetic_camera_calibration_parsers_ros_noetic_pcl_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-stereo-msgs ros-noetic-image-transport ros-noetic-gazebo-msgs
+          ros-noetic-camera-calibration-parsers ros-noetic-pcl-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-stereo-msgs ros-noetic-image-transport ros-noetic-gazebo-msgs
+        ros-noetic-camera-calibration-parsers ros-noetic-pcl-msgs
+  - job: ros_noetic_image_geometry_ros_noetic_cv_bridge_ros_noetic_rqt_topic_ros_noetic_rqt_robot_steering_ros_noetic_hls_lfcd_lds_driver
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-image-geometry ros-noetic-cv-bridge ros-noetic-rqt-topic
+          ros-noetic-rqt-robot-steering ros-noetic-hls-lfcd-lds-driver
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-image-geometry ros-noetic-cv-bridge ros-noetic-rqt-topic
+        ros-noetic-rqt-robot-steering ros-noetic-hls-lfcd-lds-driver
+  - job: ros_noetic_joy_ros_noetic_lms1xx_ros_noetic_laser_proc_ros_noetic_mavros_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-joy ros-noetic-lms1xx ros-noetic-laser-proc ros-noetic-mavros-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-joy ros-noetic-lms1xx ros-noetic-laser-proc ros-noetic-mavros-msgs
+- stage: stage_10
+  jobs:
+  - job: ros_noetic_actionlib_ros_noetic_roswtf_ros_noetic_joint_state_publisher_gui_ros_noetic_moveit_msgs_ros_noetic_dynamic_reconfigure
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-actionlib ros-noetic-roswtf ros-noetic-joint-state-publisher-gui
+          ros-noetic-moveit-msgs ros-noetic-dynamic-reconfigure
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-actionlib ros-noetic-roswtf ros-noetic-joint-state-publisher-gui
+        ros-noetic-moveit-msgs ros-noetic-dynamic-reconfigure
+  - job: ros_noetic_rqt_logger_level_ros_noetic_rqt_bag_ros_noetic_common_msgs_ros_noetic_rqt_graph_ros_noetic_controller_manager_msgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rqt-logger-level ros-noetic-rqt-bag ros-noetic-common-msgs
+          ros-noetic-rqt-graph ros-noetic-controller-manager-msgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rqt-logger-level ros-noetic-rqt-bag ros-noetic-common-msgs
+        ros-noetic-rqt-graph ros-noetic-controller-manager-msgs
+  - job: ros_noetic_polled_camera_ros_noetic_camera_info_manager_ros_noetic_pcl_conversions_ros_noetic_rqt_image_view_ros_noetic_grid_map_cv
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-polled-camera ros-noetic-camera-info-manager ros-noetic-pcl-conversions
+          ros-noetic-rqt-image-view ros-noetic-grid-map-cv
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-polled-camera ros-noetic-camera-info-manager ros-noetic-pcl-conversions
+        ros-noetic-rqt-image-view ros-noetic-grid-map-cv
+  - job: ros_noetic_camera_calibration_ros_noetic_rosbridge_library_ros_noetic_vision_opencv_ros_noetic_teleop_twist_joy
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-camera-calibration ros-noetic-rosbridge-library
+          ros-noetic-vision-opencv ros-noetic-teleop-twist-joy
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-camera-calibration ros-noetic-rosbridge-library
+        ros-noetic-vision-opencv ros-noetic-teleop-twist-joy
+- stage: stage_11
+  jobs:
+  - job: ros_noetic_tf2_ros_ros_noetic_rqt_py_common_ros_noetic_ros_comm_ros_noetic_nodelet_topic_tools_ros_noetic_realtime_tools
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-tf2-ros ros-noetic-rqt-py-common ros-noetic-ros-comm
+          ros-noetic-nodelet-topic-tools ros-noetic-realtime-tools
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-tf2-ros ros-noetic-rqt-py-common ros-noetic-ros-comm
+        ros-noetic-nodelet-topic-tools ros-noetic-realtime-tools
+  - job: ros_noetic_smach_ros_ros_noetic_rqt_dep_ros_noetic_controller_manager_ros_noetic_theora_image_transport_ros_noetic_compressed_image_transport
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-smach-ros ros-noetic-rqt-dep ros-noetic-controller-manager
+          ros-noetic-theora-image-transport ros-noetic-compressed-image-transport
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-smach-ros ros-noetic-rqt-dep ros-noetic-controller-manager
+        ros-noetic-theora-image-transport ros-noetic-compressed-image-transport
+  - job: ros_noetic_compressed_depth_image_transport_ros_noetic_image_view_ros_noetic_image_publisher_ros_noetic_turtle_actionlib_ros_noetic_actionlib_tutorials
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-compressed-depth-image-transport ros-noetic-image-view
+          ros-noetic-image-publisher ros-noetic-turtle-actionlib ros-noetic-actionlib-tutorials
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-compressed-depth-image-transport ros-noetic-image-view
+        ros-noetic-image-publisher ros-noetic-turtle-actionlib ros-noetic-actionlib-tutorials
+  - job: ros_noetic_image_common_ros_noetic_twist_mux_msgs_ros_noetic_rosapi_ros_noetic_velodyne_laserscan
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-image-common ros-noetic-twist-mux-msgs ros-noetic-rosapi
+          ros-noetic-velodyne-laserscan
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-image-common ros-noetic-twist-mux-msgs ros-noetic-rosapi
+        ros-noetic-velodyne-laserscan
+- stage: stage_12
+  jobs:
+  - job: ros_noetic_tf2_kdl_ros_noetic_tf_ros_noetic_tf2_geometry_msgs_ros_noetic_tf2_sensor_msgs_ros_noetic_rqt_console
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-tf2-kdl ros-noetic-tf ros-noetic-tf2-geometry-msgs
+          ros-noetic-tf2-sensor-msgs ros-noetic-rqt-console
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-tf2-kdl ros-noetic-tf ros-noetic-tf2-geometry-msgs
+        ros-noetic-tf2-sensor-msgs ros-noetic-rqt-console
+  - job: ros_noetic_rqt_robot_monitor_ros_noetic_rqt_plot_ros_noetic_ros_core_ros_noetic_nodelet_core_ros_noetic_image_proc
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rqt-robot-monitor ros-noetic-rqt-plot ros-noetic-ros-core
+          ros-noetic-nodelet-core ros-noetic-image-proc
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rqt-robot-monitor ros-noetic-rqt-plot ros-noetic-ros-core
+        ros-noetic-nodelet-core ros-noetic-image-proc
+  - job: ros_noetic_rqt_tf_tree_ros_noetic_rqt_moveit_ros_noetic_rqt_service_caller_ros_noetic_rqt_publisher_ros_noetic_forward_command_controller
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rqt-tf-tree ros-noetic-rqt-moveit ros-noetic-rqt-service-caller
+          ros-noetic-rqt-publisher ros-noetic-forward-command-controller
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rqt-tf-tree ros-noetic-rqt-moveit ros-noetic-rqt-service-caller
+        ros-noetic-rqt-publisher ros-noetic-forward-command-controller
+  - job: ros_noetic_control_toolbox_ros_noetic_executive_smach_ros_noetic_depth_image_proc_ros_noetic_joint_state_controller_ros_noetic_image_transport_plugins
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-control-toolbox ros-noetic-executive-smach ros-noetic-depth-image-proc
+          ros-noetic-joint-state-controller ros-noetic-image-transport-plugins
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-control-toolbox ros-noetic-executive-smach ros-noetic-depth-image-proc
+        ros-noetic-joint-state-controller ros-noetic-image-transport-plugins
+  - job: ros_noetic_common_tutorials_ros_noetic_imu_sensor_controller_ros_noetic_force_torque_sensor_controller_ros_noetic_twist_mux_ros_noetic_ros_control
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-common-tutorials ros-noetic-imu-sensor-controller
+          ros-noetic-force-torque-sensor-controller ros-noetic-twist-mux ros-noetic-ros-control
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-common-tutorials ros-noetic-imu-sensor-controller
+        ros-noetic-force-torque-sensor-controller ros-noetic-twist-mux ros-noetic-ros-control
+  - job: ros_noetic_rosbridge_server_ros_noetic_mavros
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rosbridge-server ros-noetic-mavros
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rosbridge-server ros-noetic-mavros
+- stage: stage_13
+  jobs:
+  - job: ros_noetic_robot_state_publisher_ros_noetic_laser_geometry_ros_noetic_interactive_markers_ros_noetic_rqt_nav_view_ros_noetic_rqt_msg
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-robot-state-publisher ros-noetic-laser-geometry
+          ros-noetic-interactive-markers ros-noetic-rqt-nav-view ros-noetic-rqt-msg
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-robot-state-publisher ros-noetic-laser-geometry
+        ros-noetic-interactive-markers ros-noetic-rqt-nav-view ros-noetic-rqt-msg
+  - job: ros_noetic_warehouse_ros_ros_noetic_tf_conversions_ros_noetic_diagnostic_common_diagnostics_ros_noetic_gazebo_ros_ros_noetic_rqt_pose_view
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-warehouse-ros ros-noetic-tf-conversions ros-noetic-diagnostic-common-diagnostics
+          ros-noetic-gazebo-ros ros-noetic-rqt-pose-view
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-warehouse-ros ros-noetic-tf-conversions ros-noetic-diagnostic-common-diagnostics
+        ros-noetic-gazebo-ros ros-noetic-rqt-pose-view
+  - job: ros_noetic_rqt_reconfigure_ros_noetic_rqt_launch_ros_noetic_rqt_bag_plugins_ros_noetic_ros_base_ros_noetic_pcl_ros
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rqt-reconfigure ros-noetic-rqt-launch ros-noetic-rqt-bag-plugins
+          ros-noetic-ros-base ros-noetic-pcl-ros
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rqt-reconfigure ros-noetic-rqt-launch ros-noetic-rqt-bag-plugins
+        ros-noetic-ros-base ros-noetic-pcl-ros
+  - job: ros_noetic_stereo_image_proc_ros_noetic_image_rotate_ros_noetic_turtle_tf2_ros_noetic_turtle_tf_ros_noetic_grid_map_ros
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-stereo-image-proc ros-noetic-image-rotate ros-noetic-turtle-tf2
+          ros-noetic-turtle-tf ros-noetic-grid-map-ros
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-stereo-image-proc ros-noetic-image-rotate ros-noetic-turtle-tf2
+        ros-noetic-turtle-tf ros-noetic-grid-map-ros
+  - job: ros_noetic_diff_drive_controller_ros_noetic_position_controllers_ros_noetic_mbf_utility_ros_noetic_amcl_ros_noetic_velocity_controllers
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-diff-drive-controller ros-noetic-position-controllers
+          ros-noetic-mbf-utility ros-noetic-amcl ros-noetic-velocity-controllers
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-diff-drive-controller ros-noetic-position-controllers
+        ros-noetic-mbf-utility ros-noetic-amcl ros-noetic-velocity-controllers
+  - job: ros_noetic_joint_trajectory_controller_ros_noetic_gripper_action_controller_ros_noetic_imu_filter_madgwick_ros_noetic_imu_complementary_filter_ros_noetic_velodyne_driver
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-joint-trajectory-controller ros-noetic-gripper-action-controller
+          ros-noetic-imu-filter-madgwick ros-noetic-imu-complementary-filter ros-noetic-velodyne-driver
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-joint-trajectory-controller ros-noetic-gripper-action-controller
+        ros-noetic-imu-filter-madgwick ros-noetic-imu-complementary-filter ros-noetic-velodyne-driver
+  - job: ros_noetic_robot_localization_ros_noetic_gmapping_ros_noetic_rosserial_client_ros_noetic_nmea_navsat_driver_ros_noetic_slam_karto
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-robot-localization ros-noetic-gmapping ros-noetic-rosserial-client
+          ros-noetic-nmea-navsat-driver ros-noetic-slam-karto
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-robot-localization ros-noetic-gmapping ros-noetic-rosserial-client
+        ros-noetic-nmea-navsat-driver ros-noetic-slam-karto
+  - job: ros_noetic_plotjuggler_ros_ros_noetic_ros_numpy_ros_noetic_urg_node_ros_noetic_rosbridge_suite
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-plotjuggler-ros ros-noetic-ros-numpy ros-noetic-urg-node
+          ros-noetic-rosbridge-suite
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-plotjuggler-ros ros-noetic-ros-numpy ros-noetic-urg-node
+        ros-noetic-rosbridge-suite
+- stage: stage_14
+  jobs:
+  - job: ros_noetic_moveit_resources_panda_moveit_config_ros_noetic_moveit_resources_fanuc_moveit_config_ros_noetic_costmap_2d_ros_noetic_rviz_ros_noetic_rqt_robot_dashboard
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-resources-panda-moveit-config ros-noetic-moveit-resources-fanuc-moveit-config
+          ros-noetic-costmap-2d ros-noetic-rviz ros-noetic-rqt-robot-dashboard
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-resources-panda-moveit-config ros-noetic-moveit-resources-fanuc-moveit-config
+        ros-noetic-costmap-2d ros-noetic-rviz ros-noetic-rqt-robot-dashboard
+  - job: ros_noetic_rqt_srv_ros_noetic_rqt_action_ros_noetic_geometry_ros_noetic_diagnostics_ros_noetic_gazebo_plugins
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rqt-srv ros-noetic-rqt-action ros-noetic-geometry
+          ros-noetic-diagnostics ros-noetic-gazebo-plugins
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rqt-srv ros-noetic-rqt-action ros-noetic-geometry
+        ros-noetic-diagnostics ros-noetic-gazebo-plugins
+  - job: ros_noetic_laser_filters_ros_noetic_laser_assembler_ros_noetic_interactive_marker_tutorials_ros_noetic_gazebo_ros_control_ros_noetic_perception_pcl
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-laser-filters ros-noetic-laser-assembler ros-noetic-interactive-marker-tutorials
+          ros-noetic-gazebo-ros-control ros-noetic-perception-pcl
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-laser-filters ros-noetic-laser-assembler ros-noetic-interactive-marker-tutorials
+        ros-noetic-gazebo-ros-control ros-noetic-perception-pcl
+  - job: ros_noetic_image_pipeline_ros_noetic_geometry_tutorials_ros_noetic_hector_gazebo_plugins_ros_noetic_grid_map_visualization_ros_noetic_grid_map_loader
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-image-pipeline ros-noetic-geometry-tutorials ros-noetic-hector-gazebo-plugins
+          ros-noetic-grid-map-visualization ros-noetic-grid-map-loader
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-image-pipeline ros-noetic-geometry-tutorials ros-noetic-hector-gazebo-plugins
+        ros-noetic-grid-map-visualization ros-noetic-grid-map-loader
+  - job: ros_noetic_grid_map_filters_ros_noetic_turtlebot3_bringup_ros_noetic_effort_controllers_ros_noetic_ackermann_steering_controller_ros_noetic_interactive_marker_twist_server
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-grid-map-filters ros-noetic-turtlebot3-bringup
+          ros-noetic-effort-controllers ros-noetic-ackermann-steering-controller ros-noetic-interactive-marker-twist-server
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-grid-map-filters ros-noetic-turtlebot3-bringup
+        ros-noetic-effort-controllers ros-noetic-ackermann-steering-controller ros-noetic-interactive-marker-twist-server
+  - job: ros_noetic_pointgrey_camera_description_ros_noetic_velodyne_gazebo_plugins_ros_noetic_turtlebot3_fake_ros_noetic_velodyne_pointcloud_ros_noetic_rosserial
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-pointgrey-camera-description ros-noetic-velodyne-gazebo-plugins
+          ros-noetic-turtlebot3-fake ros-noetic-velodyne-pointcloud ros-noetic-rosserial
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-pointgrey-camera-description ros-noetic-velodyne-gazebo-plugins
+        ros-noetic-turtlebot3-fake ros-noetic-velodyne-pointcloud ros-noetic-rosserial
+  - job: ros_noetic_slam_toolbox_ros_noetic_jackal_base
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-slam-toolbox ros-noetic-jackal-base
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-slam-toolbox ros-noetic-jackal-base
+- stage: stage_15
+  jobs:
+  - job: ros_noetic_moveit_core_ros_noetic_nav_core_ros_noetic_rqt_rviz_ros_noetic_rqt_common_plugins_ros_noetic_rviz_python_tutorial
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-core ros-noetic-nav-core ros-noetic-rqt-rviz
+          ros-noetic-rqt-common-plugins ros-noetic-rviz-python-tutorial
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-core ros-noetic-nav-core ros-noetic-rqt-rviz
+        ros-noetic-rqt-common-plugins ros-noetic-rviz-python-tutorial
+  - job: ros_noetic_rviz_plugin_tutorials_ros_noetic_librviz_tutorial_ros_noetic_urdf_tutorial_ros_noetic_robot_ros_noetic_gazebo_ros_pkgs
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-rviz-plugin-tutorials ros-noetic-librviz-tutorial
+          ros-noetic-urdf-tutorial ros-noetic-robot ros-noetic-gazebo-ros-pkgs
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-rviz-plugin-tutorials ros-noetic-librviz-tutorial
+        ros-noetic-urdf-tutorial ros-noetic-robot ros-noetic-gazebo-ros-pkgs
+  - job: ros_noetic_laser_pipeline_ros_noetic_grid_map_rviz_plugin_ros_noetic_jackal_gazebo_ros_noetic_rviz_visual_tools_ros_noetic_rviz_imu_plugin
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-laser-pipeline ros-noetic-grid-map-rviz-plugin
+          ros-noetic-jackal-gazebo ros-noetic-rviz-visual-tools ros-noetic-rviz-imu-plugin
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-laser-pipeline ros-noetic-grid-map-rviz-plugin
+        ros-noetic-jackal-gazebo ros-noetic-rviz-visual-tools ros-noetic-rviz-imu-plugin
+  - job: ros_noetic_costmap_converter_ros_noetic_jackal_viz_ros_noetic_turtlebot3_slam_ros_noetic_turtlebot3_example_ros_noetic_ros_controllers
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-costmap-converter ros-noetic-jackal-viz ros-noetic-turtlebot3-slam
+          ros-noetic-turtlebot3-example ros-noetic-ros-controllers
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-costmap-converter ros-noetic-jackal-viz ros-noetic-turtlebot3-slam
+        ros-noetic-turtlebot3-example ros-noetic-ros-controllers
+  - job: ros_noetic_jackal_control_ros_noetic_jackal_description_ros_noetic_velodyne_simulator
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-jackal-control ros-noetic-jackal-description ros-noetic-velodyne-simulator
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-jackal-control ros-noetic-jackal-description ros-noetic-velodyne-simulator
+- stage: stage_16
+  jobs:
+  - job: ros_noetic_moveit_ros_occupancy_map_monitor_ros_noetic_base_local_planner_ros_noetic_rqt_robot_plugins_ros_noetic_moveit_simple_controller_manager_ros_noetic_chomp_motion_planner
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-occupancy-map-monitor ros-noetic-base-local-planner
+          ros-noetic-rqt-robot-plugins ros-noetic-moveit-simple-controller-manager
+          ros-noetic-chomp-motion-planner
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-ros-occupancy-map-monitor ros-noetic-base-local-planner
+        ros-noetic-rqt-robot-plugins ros-noetic-moveit-simple-controller-manager ros-noetic-chomp-motion-planner
+  - job: ros_noetic_navfn_ros_noetic_clear_costmap_recovery_ros_noetic_visualization_tutorials_ros_noetic_urdf_sim_tutorial_ros_noetic_perception
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-navfn ros-noetic-clear-costmap-recovery ros-noetic-visualization-tutorials
+          ros-noetic-urdf-sim-tutorial ros-noetic-perception
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-navfn ros-noetic-clear-costmap-recovery ros-noetic-visualization-tutorials
+        ros-noetic-urdf-sim-tutorial ros-noetic-perception
+  - job: ros_noetic_mbf_costmap_core_ros_noetic_grid_map_demos_ros_noetic_jackal_simulator_ros_noetic_imu_tools_ros_noetic_jackal_desktop
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-mbf-costmap-core ros-noetic-grid-map-demos ros-noetic-jackal-simulator
+          ros-noetic-imu-tools ros-noetic-jackal-desktop
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-mbf-costmap-core ros-noetic-grid-map-demos ros-noetic-jackal-simulator
+        ros-noetic-imu-tools ros-noetic-jackal-desktop
+- stage: stage_17
+  jobs:
+  - job: ros_noetic_moveit_ros_planning_ros_noetic_rotate_recovery_ros_noetic_viz_ros_noetic_moveit_ros_control_interface_ros_noetic_simulators
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-planning ros-noetic-rotate-recovery
+          ros-noetic-viz ros-noetic-moveit-ros-control-interface ros-noetic-simulators
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-ros-planning ros-noetic-rotate-recovery
+        ros-noetic-viz ros-noetic-moveit-ros-control-interface ros-noetic-simulators
+  - job: ros_noetic_teb_local_planner_ros_noetic_grid_map
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-teb-local-planner ros-noetic-grid-map
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-teb-local-planner ros-noetic-grid-map
+- stage: stage_18
+  jobs:
+  - job: ros_noetic_moveit_kinematics_ros_noetic_moveit_ros_warehouse_ros_noetic_moveit_ros_robot_interaction_ros_noetic_moveit_ros_perception_ros_noetic_moveit_fake_controller_manager
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-kinematics ros-noetic-moveit-ros-warehouse
+          ros-noetic-moveit-ros-robot-interaction ros-noetic-moveit-ros-perception
+          ros-noetic-moveit-fake-controller-manager
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-kinematics ros-noetic-moveit-ros-warehouse
+        ros-noetic-moveit-ros-robot-interaction ros-noetic-moveit-ros-perception ros-noetic-moveit-fake-controller-manager
+  - job: ros_noetic_moveit_planners_ompl_ros_noetic_move_base_ros_noetic_desktop_ros_noetic_moveit_visual_tools
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-planners-ompl ros-noetic-move-base ros-noetic-desktop
+          ros-noetic-moveit-visual-tools
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-planners-ompl ros-noetic-move-base ros-noetic-desktop
+        ros-noetic-moveit-visual-tools
+- stage: stage_19
+  jobs:
+  - job: ros_noetic_moveit_ros_move_group_ros_noetic_moveit_ros_benchmarks_ros_noetic_moveit_plugins_ros_noetic_turtlebot3_navigation_ros_noetic_desktop_full
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-move-group ros-noetic-moveit-ros-benchmarks
+          ros-noetic-moveit-plugins ros-noetic-turtlebot3-navigation ros-noetic-desktop-full
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-ros-move-group ros-noetic-moveit-ros-benchmarks
+        ros-noetic-moveit-plugins ros-noetic-turtlebot3-navigation ros-noetic-desktop-full
+  - job: ros_noetic_jackal_navigation
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-jackal-navigation
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-jackal-navigation
+- stage: stage_20
+  jobs:
+  - job: ros_noetic_moveit_ros_manipulation_ros_noetic_turtlebot3_ros_noetic_moveit_ros_planning_interface
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-manipulation ros-noetic-turtlebot3
+          ros-noetic-moveit-ros-planning-interface
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-ros-manipulation ros-noetic-turtlebot3
+        ros-noetic-moveit-ros-planning-interface
+- stage: stage_21
+  jobs:
+  - job: ros_noetic_moveit_ros_visualization_ros_noetic_moveit_planners_chomp_ros_noetic_moveit_commander_ros_noetic_webots_ros
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-visualization ros-noetic-moveit-planners-chomp
+          ros-noetic-moveit-commander ros-noetic-webots-ros
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-ros-visualization ros-noetic-moveit-planners-chomp
+        ros-noetic-moveit-commander ros-noetic-webots-ros
+- stage: stage_22
+  jobs:
+  - job: ros_noetic_moveit_setup_assistant_ros_noetic_moveit_ros_ros_noetic_moveit_planners_ros_noetic_moveit
+    steps:
+    - script: |-
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/run_docker_build.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-setup-assistant ros-noetic-moveit-ros ros-noetic-moveit-planners
+          ros-noetic-moveit
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      displayName: Build ros-noetic-moveit-setup-assistant ros-noetic-moveit-ros ros-noetic-moveit-planners
+        ros-noetic-moveit
