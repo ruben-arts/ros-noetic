@@ -1,0 +1,199 @@
+pool:
+  vmImage: macOS-10.15
+trigger:
+- buildbranch_osx
+pr: none
+stages:
+- stage: stage_0
+  jobs:
+  - job: stage_0_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-kinematics ros-noetic-moveit-ros-warehouse
+          ros-noetic-moveit-ros-robot-interaction ros-noetic-moveit-ros-perception
+          ros-noetic-move-base
+      displayName: Build ros-noetic-moveit-kinematics ros-noetic-moveit-ros-warehouse
+        ros-noetic-moveit-ros-robot-interaction ros-noetic-moveit-ros-perception ros-noetic-move-base
+  - job: stage_0_job_1
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-planners-ompl ros-noetic-moveit-fake-controller-manager
+          ros-noetic-simulators ros-noetic-perception ros-noetic-desktop
+      displayName: Build ros-noetic-moveit-planners-ompl ros-noetic-moveit-fake-controller-manager
+        ros-noetic-simulators ros-noetic-perception ros-noetic-desktop
+  - job: stage_0_job_2
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-robot-calibration ros-noetic-sbpl-lattice-planner
+          ros-noetic-pose-follower ros-noetic-jackal-simulator ros-noetic-grid-map-visualization
+      displayName: Build ros-noetic-robot-calibration ros-noetic-sbpl-lattice-planner
+        ros-noetic-pose-follower ros-noetic-jackal-simulator ros-noetic-grid-map-visualization
+  - job: stage_0_job_3
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-grid-map-loader ros-noetic-grid-map-rviz-plugin
+          ros-noetic-industrial-trajectory-filters
+      displayName: Build ros-noetic-grid-map-loader ros-noetic-grid-map-rviz-plugin
+        ros-noetic-industrial-trajectory-filters
+- stage: stage_1
+  jobs:
+  - job: stage_1_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-move-group ros-noetic-cob-navigation-global
+          ros-noetic-moveit-ros-benchmarks ros-noetic-moveit-plugins ros-noetic-turtlebot3-navigation
+      displayName: Build ros-noetic-moveit-ros-move-group ros-noetic-cob-navigation-global
+        ros-noetic-moveit-ros-benchmarks ros-noetic-moveit-plugins ros-noetic-turtlebot3-navigation
+  - job: stage_1_job_1
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-mbf-costmap-nav ros-noetic-desktop-full ros-noetic-fetch-calibration
+          ros-noetic-sbpl-recovery ros-noetic-cob-navigation-local
+      displayName: Build ros-noetic-mbf-costmap-nav ros-noetic-desktop-full ros-noetic-fetch-calibration
+        ros-noetic-sbpl-recovery ros-noetic-cob-navigation-local
+  - job: stage_1_job_2
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-navigation ros-noetic-volta-navigation ros-noetic-jackal-navigation
+      displayName: Build ros-noetic-navigation ros-noetic-volta-navigation ros-noetic-jackal-navigation
+- stage: stage_2
+  jobs:
+  - job: stage_2_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-manipulation ros-noetic-cob-mapping-slam
+          ros-noetic-turtlebot3 ros-noetic-move-base-flex ros-noetic-gpp-plugin
+      displayName: Build ros-noetic-moveit-ros-manipulation ros-noetic-cob-mapping-slam
+        ros-noetic-turtlebot3 ros-noetic-move-base-flex ros-noetic-gpp-plugin
+- stage: stage_3
+  jobs:
+  - job: stage_3_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-planning-interface ros-noetic-cob-navigation-slam
+      displayName: Build ros-noetic-moveit-ros-planning-interface ros-noetic-cob-navigation-slam
+- stage: stage_4
+  jobs:
+  - job: stage_4_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-moveit-ros-visualization ros-noetic-moveit-planners-chomp
+          ros-noetic-moveit-commander ros-noetic-pincher-arm-moveit-demos ros-noetic-webots-ros
+      displayName: Build ros-noetic-moveit-ros-visualization ros-noetic-moveit-planners-chomp
+        ros-noetic-moveit-commander ros-noetic-pincher-arm-moveit-demos ros-noetic-webots-ros
+- stage: stage_5
+  jobs:
+  - job: stage_5_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-panda-moveit-config ros-noetic-moveit-setup-assistant
+          ros-noetic-moveit-ros ros-noetic-moveit-planners ros-noetic-pilz-industrial-motion-testutils
+      displayName: Build ros-noetic-panda-moveit-config ros-noetic-moveit-setup-assistant
+        ros-noetic-moveit-ros ros-noetic-moveit-planners ros-noetic-pilz-industrial-motion-testutils
+- stage: stage_6
+  jobs:
+  - job: stage_6_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-franka-example-controllers ros-noetic-moveit ros-noetic-moveit-runtime
+          ros-noetic-pincher-arm-moveit-config
+      displayName: Build ros-noetic-franka-example-controllers ros-noetic-moveit ros-noetic-moveit-runtime
+        ros-noetic-pincher-arm-moveit-config
+- stage: stage_7
+  jobs:
+  - job: stage_7_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-franka-ros
+      displayName: Build ros-noetic-franka-ros
