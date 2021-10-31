@@ -1,0 +1,140 @@
+pool:
+  vmImage: macOS-10.15
+trigger:
+- buildbranch_osx_arm64
+pr: none
+stages:
+- stage: stage_0
+  jobs:
+  - job: stage_0_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-actionlib ros-noetic-roswtf ros-noetic-dynamic-reconfigure
+          ros-noetic-common-msgs
+      displayName: Build ros-noetic-actionlib ros-noetic-roswtf ros-noetic-dynamic-reconfigure
+        ros-noetic-common-msgs
+- stage: stage_1
+  jobs:
+  - job: stage_1_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-tf2-ros ros-noetic-ros-comm ros-noetic-nodelet-topic-tools
+          ros-noetic-smach-ros ros-noetic-theora-image-transport
+      displayName: Build ros-noetic-tf2-ros ros-noetic-ros-comm ros-noetic-nodelet-topic-tools
+        ros-noetic-smach-ros ros-noetic-theora-image-transport
+  - job: stage_1_job_1
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-compressed-image-transport ros-noetic-compressed-depth-image-transport
+          ros-noetic-image-view ros-noetic-image-publisher
+      displayName: Build ros-noetic-compressed-image-transport ros-noetic-compressed-depth-image-transport
+        ros-noetic-image-view ros-noetic-image-publisher
+- stage: stage_2
+  jobs:
+  - job: stage_2_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-tf2-geometry-msgs ros-noetic-tf ros-noetic-ros-core
+          ros-noetic-nodelet-core ros-noetic-tf2-kdl
+      displayName: Build ros-noetic-tf2-geometry-msgs ros-noetic-tf ros-noetic-ros-core
+        ros-noetic-nodelet-core ros-noetic-tf2-kdl
+  - job: stage_2_job_1
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-image-proc ros-noetic-executive-smach ros-noetic-depth-image-proc
+          ros-noetic-image-transport-plugins
+      displayName: Build ros-noetic-image-proc ros-noetic-executive-smach ros-noetic-depth-image-proc
+        ros-noetic-image-transport-plugins
+- stage: stage_3
+  jobs:
+  - job: stage_3_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-laser-geometry ros-noetic-tf-conversions ros-noetic-diagnostic-common-diagnostics
+          ros-noetic-ros-base ros-noetic-robot-state-publisher
+      displayName: Build ros-noetic-laser-geometry ros-noetic-tf-conversions ros-noetic-diagnostic-common-diagnostics
+        ros-noetic-ros-base ros-noetic-robot-state-publisher
+  - job: stage_3_job_1
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-stereo-image-proc ros-noetic-image-rotate
+      displayName: Build ros-noetic-stereo-image-proc ros-noetic-image-rotate
+- stage: stage_4
+  jobs:
+  - job: stage_4_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-laser-filters ros-noetic-laser-assembler ros-noetic-geometry
+          ros-noetic-diagnostics ros-noetic-image-pipeline
+      displayName: Build ros-noetic-laser-filters ros-noetic-laser-assembler ros-noetic-geometry
+        ros-noetic-diagnostics ros-noetic-image-pipeline
+- stage: stage_5
+  jobs:
+  - job: stage_5_job_0
+    steps:
+    - script: |-
+        \
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_osx_arm64.sh
+      env:
+        ANACONDA_API_TOKEN: $(ANACONDA_API_TOKEN)
+        CURRENT_RECIPES: ros-noetic-laser-pipeline ros-noetic-robot
+      displayName: Build ros-noetic-laser-pipeline ros-noetic-robot
