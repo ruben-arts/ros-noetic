@@ -1,0 +1,65 @@
+package:
+  name: ros-noetic-fkie-potree-rviz-plugin
+  version: 1.0.1
+source:
+  git_url: https://github.com/fkie-release/potree_rviz_plugin-release.git
+  git_rev: release/noetic/fkie_potree_rviz_plugin/1.0.1-1
+  folder: ros-noetic-fkie-potree-rviz-plugin/src/work
+  patches:
+    - patch/ros-noetic-fkie-potree-rviz-plugin.patch
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+    - sel(unix): "{{ cdt('mesa-libgl-devel') }}"
+    - sel(unix): "{{ cdt('mesa-dri-drivers') }}"
+    - sel(linux): "{{ cdt('libselinux') }}"
+    - sel(linux): "{{ cdt('libxdamage') }}"
+    - sel(linux): "{{ cdt('libxxf86vm') }}"
+    - sel(linux): "{{ cdt('libxfixes') }}"
+    - sel(linux): "{{ cdt('libxext') }}"
+    - sel(linux): "{{ cdt('libxau') }}"
+    - sel(linux): "{{ cdt('libxcb') }}"
+  host:
+    - boost
+    - jsoncpp
+    - python
+    - qt 5.12
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-catkin
+    - ros-noetic-rviz
+    - sel(unix): xorg-libx11
+    - sel(unix): xorg-libxext
+  run:
+    - boost
+    - python
+    - qt
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-media-export
+    - ros-noetic-rviz
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}
+    - sel(unix): xorg-libx11
+    - sel(unix): xorg-libxext

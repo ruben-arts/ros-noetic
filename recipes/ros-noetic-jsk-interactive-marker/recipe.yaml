@@ -1,0 +1,107 @@
+package:
+  name: ros-noetic-jsk-interactive-marker
+  version: 2.1.7
+source:
+  git_url: https://github.com/tork-a/jsk_visualization-release.git
+  git_rev: release/noetic/jsk_interactive_marker/2.1.7-4
+  folder: ros-noetic-jsk-interactive-marker/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+    - sel(unix): "{{ cdt('mesa-libgl-devel') }}"
+    - sel(unix): "{{ cdt('mesa-dri-drivers') }}"
+    - sel(linux): "{{ cdt('libselinux') }}"
+    - sel(linux): "{{ cdt('libxdamage') }}"
+    - sel(linux): "{{ cdt('libxxf86vm') }}"
+    - sel(linux): "{{ cdt('libxfixes') }}"
+    - sel(linux): "{{ cdt('libxext') }}"
+    - sel(linux): "{{ cdt('libxau') }}"
+    - sel(linux): "{{ cdt('libxcb') }}"
+  host:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-actionlib
+    - ros-noetic-catkin
+    - ros-noetic-cmake-modules
+    - ros-noetic-dynamic-reconfigure
+    - ros-noetic-dynamic-tf-publisher
+    - ros-noetic-eigen-conversions
+    - ros-noetic-geometry-msgs
+    - ros-noetic-interactive-markers
+    - ros-noetic-jsk-footstep-msgs
+    - ros-noetic-jsk-recognition-msgs
+    - ros-noetic-jsk-recognition-utils
+    - ros-noetic-jsk-rviz-plugins
+    - ros-noetic-jsk-topic-tools
+    - ros-noetic-message-filters
+    - ros-noetic-message-generation
+    - ros-noetic-message-runtime
+    - ros-noetic-mk
+    - ros-noetic-moveit-msgs
+    - ros-noetic-rosbuild
+    - ros-noetic-roscpp
+    - ros-noetic-roslib
+    - ros-noetic-rviz
+    - ros-noetic-sensor-msgs
+    - ros-noetic-tf
+    - ros-noetic-tf-conversions
+    - ros-noetic-urdf
+    - ros-noetic-visualization-msgs
+    - tinyxml
+    - yaml-cpp
+    - sel(unix): xorg-libx11
+    - sel(unix): xorg-libxext
+  run:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-actionlib
+    - ros-noetic-dynamic-reconfigure
+    - ros-noetic-dynamic-tf-publisher
+    - ros-noetic-eigen-conversions
+    - ros-noetic-geometry-msgs
+    - ros-noetic-interactive-markers
+    - ros-noetic-jsk-footstep-msgs
+    - ros-noetic-jsk-recognition-msgs
+    - ros-noetic-jsk-recognition-utils
+    - ros-noetic-jsk-rviz-plugins
+    - ros-noetic-jsk-topic-tools
+    - ros-noetic-message-filters
+    - ros-noetic-message-runtime
+    - ros-noetic-moveit-msgs
+    - ros-noetic-roscpp
+    - ros-noetic-roslib
+    - ros-noetic-rviz
+    - ros-noetic-sensor-msgs
+    - ros-noetic-tf
+    - ros-noetic-tf-conversions
+    - ros-noetic-urdf
+    - ros-noetic-visualization-msgs
+    - tinyxml
+    - yaml-cpp
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}
+    - sel(unix): xorg-libx11
+    - sel(unix): xorg-libxext

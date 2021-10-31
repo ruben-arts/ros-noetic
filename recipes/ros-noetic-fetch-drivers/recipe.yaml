@@ -1,0 +1,86 @@
+package:
+  name: ros-noetic-fetch-drivers
+  version: 0.9.3
+source:
+  git_url: https://github.com/fetchrobotics-gbp/fetch_robots-release.git
+  git_rev: release/noetic/fetch_drivers/0.9.3-1
+  folder: ros-noetic-fetch-drivers/src/work
+  patches:
+    - patch/ros-noetic-fetch-drivers.patch
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - boost
+    - libcurl
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-actionlib
+    - ros-noetic-actionlib-msgs
+    - ros-noetic-catkin
+    - ros-noetic-diagnostic-msgs
+    - ros-noetic-fetch-auto-dock-msgs
+    - ros-noetic-fetch-driver-msgs
+    - ros-noetic-mk
+    - ros-noetic-nav-msgs
+    - ros-noetic-power-msgs
+    - ros-noetic-robot-calibration-msgs
+    - ros-noetic-robot-controllers
+    - ros-noetic-robot-controllers-interface
+    - ros-noetic-rosconsole
+    - ros-noetic-roscpp
+    - ros-noetic-roscpp-serialization
+    - ros-noetic-rospack
+    - ros-noetic-rostime
+    - ros-noetic-sensor-msgs
+    - ros-noetic-urdf
+    - urdfdom
+    - yaml-cpp
+  run:
+    - boost
+    - libcurl
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-actionlib
+    - ros-noetic-actionlib-msgs
+    - ros-noetic-diagnostic-msgs
+    - ros-noetic-fetch-auto-dock-msgs
+    - ros-noetic-fetch-driver-msgs
+    - ros-noetic-nav-msgs
+    - ros-noetic-power-msgs
+    - ros-noetic-robot-calibration-msgs
+    - ros-noetic-robot-controllers
+    - ros-noetic-robot-controllers-interface
+    - ros-noetic-rosconsole
+    - ros-noetic-roscpp
+    - ros-noetic-roscpp-serialization
+    - ros-noetic-rostime
+    - ros-noetic-sensor-msgs
+    - ros-noetic-urdf
+    - urdfdom
+    - yaml-cpp
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

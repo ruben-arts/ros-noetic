@@ -1,0 +1,87 @@
+package:
+  name: ros-noetic-jsk-topic-tools
+  version: 2.2.11
+source:
+  git_url: https://github.com/tork-a/jsk_common-release.git
+  git_rev: release/noetic/jsk_topic_tools/2.2.11-2
+  folder: ros-noetic-jsk-topic-tools/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-catkin
+    - ros-noetic-diagnostic-msgs
+    - ros-noetic-diagnostic-updater
+    - ros-noetic-dynamic-reconfigure
+    - ros-noetic-dynamic-tf-publisher
+    - ros-noetic-eigen-conversions
+    - ros-noetic-geometry-msgs
+    - ros-noetic-image-transport
+    - ros-noetic-message-generation
+    - ros-noetic-nodelet
+    - ros-noetic-roscpp
+    - ros-noetic-roscpp-tutorials
+    - ros-noetic-roslaunch
+    - ros-noetic-roslint
+    - ros-noetic-rosnode
+    - ros-noetic-rostest
+    - ros-noetic-rostime
+    - ros-noetic-rostopic
+    - ros-noetic-std-msgs
+    - ros-noetic-std-srvs
+    - ros-noetic-tf
+    - ros-noetic-topic-tools
+  run:
+    - libopencv
+    - numpy
+    - py-opencv
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-diagnostic-msgs
+    - ros-noetic-diagnostic-updater
+    - ros-noetic-dynamic-reconfigure
+    - ros-noetic-dynamic-tf-publisher
+    - ros-noetic-eigen-conversions
+    - ros-noetic-geometry-msgs
+    - ros-noetic-image-transport
+    - ros-noetic-message-runtime
+    - ros-noetic-nodelet
+    - ros-noetic-roscpp
+    - ros-noetic-roslaunch
+    - ros-noetic-rosnode
+    - ros-noetic-rostime
+    - ros-noetic-rostopic
+    - ros-noetic-sensor-msgs
+    - ros-noetic-sound-play
+    - ros-noetic-std-msgs
+    - ros-noetic-std-srvs
+    - ros-noetic-tf
+    - ros-noetic-topic-tools
+    - scipy
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

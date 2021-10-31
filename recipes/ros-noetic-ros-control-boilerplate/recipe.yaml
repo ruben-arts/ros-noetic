@@ -1,0 +1,70 @@
+package:
+  name: ros-noetic-ros-control-boilerplate
+  version: 0.6.1
+source:
+  git_url: https://github.com/PickNikRobotics/ros_control_boilerplate-release.git
+  git_rev: release/noetic/ros_control_boilerplate/0.6.1-1
+  folder: ros-noetic-ros-control-boilerplate/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - gflags
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-actionlib
+    - ros-noetic-catkin
+    - ros-noetic-cmake-modules
+    - ros-noetic-control-msgs
+    - ros-noetic-control-toolbox
+    - ros-noetic-controller-manager
+    - ros-noetic-hardware-interface
+    - ros-noetic-joint-limits-interface
+    - ros-noetic-roscpp
+    - ros-noetic-rosparam-shortcuts
+    - ros-noetic-sensor-msgs
+    - ros-noetic-std-msgs
+    - ros-noetic-trajectory-msgs
+    - ros-noetic-transmission-interface
+    - ros-noetic-urdf
+  run:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-actionlib
+    - ros-noetic-control-msgs
+    - ros-noetic-control-toolbox
+    - ros-noetic-controller-manager
+    - ros-noetic-hardware-interface
+    - ros-noetic-joint-limits-interface
+    - ros-noetic-roscpp
+    - ros-noetic-rosparam-shortcuts
+    - ros-noetic-sensor-msgs
+    - ros-noetic-std-msgs
+    - ros-noetic-trajectory-msgs
+    - ros-noetic-transmission-interface
+    - ros-noetic-urdf
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

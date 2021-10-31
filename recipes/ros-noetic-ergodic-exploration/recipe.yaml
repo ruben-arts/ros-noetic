@@ -1,0 +1,56 @@
+package:
+  name: ros-noetic-ergodic-exploration
+  version: 1.0.0
+source:
+  git_url: https://github.com/bostoncleek/ergodic_exploration-release.git
+  git_rev: release/noetic/ergodic_exploration/1.0.0-2
+  folder: ros-noetic-ergodic-exploration/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - armadillo
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-catkin
+    - ros-noetic-geometry-msgs
+    - ros-noetic-nav-msgs
+    - ros-noetic-roscpp
+    - ros-noetic-rosunit
+    - ros-noetic-sensor-msgs
+    - ros-noetic-tf2
+    - ros-noetic-tf2-ros
+    - ros-noetic-visualization-msgs
+  run:
+    - armadillo
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-map-server
+    - ros-noetic-roscpp
+    - ros-noetic-rviz
+    - ros-noetic-tf2-ros
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

@@ -1,0 +1,66 @@
+package:
+  name: ros-noetic-cob-image-flip
+  version: 0.6.17
+source:
+  git_url: https://github.com/ipa320/cob_perception_common-release.git
+  git_rev: release/noetic/cob_image_flip/0.6.17-1
+  folder: ros-noetic-cob-image-flip/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-catkin
+    - ros-noetic-cob-perception-msgs
+    - ros-noetic-cv-bridge
+    - ros-noetic-geometry-msgs
+    - ros-noetic-image-transport
+    - ros-noetic-nodelet
+    - ros-noetic-pcl-conversions
+    - ros-noetic-pcl-ros
+    - ros-noetic-pluginlib
+    - ros-noetic-roscpp
+    - ros-noetic-sensor-msgs
+    - ros-noetic-stereo-msgs
+    - ros-noetic-tf
+  run:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-cob-perception-msgs
+    - ros-noetic-cv-bridge
+    - ros-noetic-geometry-msgs
+    - ros-noetic-image-transport
+    - ros-noetic-nodelet
+    - ros-noetic-pcl-conversions
+    - ros-noetic-pcl-ros
+    - ros-noetic-pluginlib
+    - ros-noetic-roscpp
+    - ros-noetic-sensor-msgs
+    - ros-noetic-stereo-msgs
+    - ros-noetic-tf
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

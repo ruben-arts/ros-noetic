@@ -1,0 +1,62 @@
+package:
+  name: ros-noetic-rqt-pr2-dashboard
+  version: 0.4.0
+source:
+  git_url: https://github.com/ros-gbp/rqt_pr2_dashboard-release.git
+  git_rev: release/noetic/rqt_pr2_dashboard/0.4.0-1
+  folder: ros-noetic-rqt-pr2-dashboard/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-catkin
+    - ros-noetic-diagnostic-msgs
+    - ros-noetic-pr2-msgs
+    - ros-noetic-pr2-power-board
+    - ros-noetic-roslib
+    - ros-noetic-rospy
+    - ros-noetic-rqt-gui
+    - ros-noetic-rqt-gui-py
+    - ros-noetic-rqt-robot-dashboard
+    - ros-noetic-std-msgs
+    - ros-noetic-std-srvs
+  run:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-diagnostic-msgs
+    - ros-noetic-pr2-msgs
+    - ros-noetic-pr2-power-board
+    - ros-noetic-roslib
+    - ros-noetic-rospy
+    - ros-noetic-rqt-gui
+    - ros-noetic-rqt-gui-py
+    - ros-noetic-rqt-robot-dashboard
+    - ros-noetic-std-msgs
+    - ros-noetic-std-srvs
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

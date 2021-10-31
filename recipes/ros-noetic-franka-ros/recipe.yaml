@@ -1,0 +1,50 @@
+package:
+  name: ros-noetic-franka-ros
+  version: 0.8.1
+source:
+  git_url: https://github.com/frankaemika/franka_ros-release.git
+  git_rev: release/noetic/franka_ros/0.8.1-1
+  folder: ros-noetic-franka-ros/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-catkin
+  run:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-franka-control
+    - ros-noetic-franka-description
+    - ros-noetic-franka-example-controllers
+    - ros-noetic-franka-gripper
+    - ros-noetic-franka-hw
+    - ros-noetic-franka-msgs
+    - ros-noetic-franka-visualization
+    - ros-noetic-panda-moveit-config
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

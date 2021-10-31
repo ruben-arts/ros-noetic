@@ -1,0 +1,47 @@
+package:
+  name: ros-noetic-cob-common
+  version: 0.7.4
+source:
+  git_url: https://github.com/ipa320/cob_common-release.git
+  git_rev: release/noetic/cob_common/0.7.4-1
+  folder: ros-noetic-cob-common/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-catkin
+  run:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-cob-actions
+    - ros-noetic-cob-description
+    - ros-noetic-cob-msgs
+    - ros-noetic-cob-srvs
+    - ros-noetic-raw-description
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

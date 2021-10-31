@@ -1,0 +1,54 @@
+package:
+  name: ros-noetic-pr2-common-actions
+  version: 0.0.12
+source:
+  git_url: https://github.com/pr2-gbp/pr2_common_actions-release.git
+  git_rev: release/noetic/pr2_common_actions/0.0.12-1
+  folder: ros-noetic-pr2-common-actions/src/work
+
+build:
+  script:
+    sel(win): bld_catkin.bat
+    sel(unix): build_catkin.sh
+  number: 12
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-catkin
+    - ros-noetic-joint-trajectory-action-tools
+    - ros-noetic-joint-trajectory-generator
+    - ros-noetic-pr2-arm-move-ik
+    - ros-noetic-pr2-common-action-msgs
+    - ros-noetic-pr2-tilt-laser-interface
+    - ros-noetic-pr2-tuck-arms-action
+  run:
+    - python
+    - ros-distro-mutex 0.2 noetic
+    - ros-noetic-joint-trajectory-action-tools
+    - ros-noetic-joint-trajectory-generator
+    - ros-noetic-pr2-arm-move-ik
+    - ros-noetic-pr2-common-action-msgs
+    - ros-noetic-pr2-tilt-laser-interface
+    - ros-noetic-pr2-tuck-arms-action
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}
